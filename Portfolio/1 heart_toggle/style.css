@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: pink;
+}
+
+.srce {
+    background-color: #fff;
+    position: relative;
+    height: 70px;
+    width: 70px;
+    transform: rotate(-45deg);
+    border-bottom-left-radius: 100px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.30); /*sena iza objekta*/
+    cursor: pointer;
+}
+
+.srce::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    border-radius: 50px;
+    background-color: #fff; /*boja levog kruga*/
+}
+
+.srce::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -50%;
+    border-radius: 50px;
+    background-color: #fff; /*boja desnog kruga*/
+}
+
+.srce, .srce::before, .srce::after {
+    transition: 0.6s;
+    transition-delay: 0.3s;
+}
+
+.srce.forward,.srce.srce.forward::before,
+.srce.forward::after {
+    background-color: #eb608c;
+}
+
+.krug {
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    left: 7px;
+    top: -28px;
+    border-radius: 50%;
+    z-index: 100;
+    transition: 0.6s;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.30);
+}
+
+.srce.forward .krug {
+    animation: move 0.6s forwards;
+}
+
+@keyframes move {
+    0% {
+        left: 7px;
+        top: -28px;
+    }
+    50% {
+        top: -1px;
+        left: 17px;
+    }
+    100% {
+        left: 42px;
+        top: 7px;
+    }
+}
+
+.srce.reverse .krug {
+    animation: back1 0.6s forwards;
+}
+
+@keyframes back1 {
+    0% {
+        left: 42px;
+        top: 7px;
+    }
+    50% {
+        left: 17px;
+        top: 1px;
+    }
+    100% {
+        left: 7px;
+        top: -28px;
+    }
+}
